@@ -74,7 +74,7 @@ def register(request):
 
 def custom_logout(request):
     logout(request)
-    return redirect('blog/post_list.html')
+    return redirect('post_list')
 
 def profile(request):
     return render(request, 'profile.html')
