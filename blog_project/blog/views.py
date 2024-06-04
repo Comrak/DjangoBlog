@@ -7,6 +7,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView, LogoutView
 from .models import Post, Comment
 from .forms import PostForm, CommentForm
+from django.contrib.auth import logout
+from django.shortcuts import redirect
+
 
 def post_list(request):
     posts = Post.objects.all()
@@ -67,3 +70,11 @@ def register(request):
     else:
         form = UserCreationForm()
     return render(request, 'blog/register.html', {'form': form})
+
+
+def custom_logout(request):
+    logout(request)
+    return redirect('blog/post_list.html')
+
+def profile(request):
+    return render(request, 'profile.html')

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Profile - My Blog</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/styles.css' %}"
+    />
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="{% url 'post_list' %}">Home</a></li>
+        <li><a href="{% url 'post_create' %}">New Post</a></li>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+      </ul>
+    </nav>
+    <div class="container">
+      <h1>Profile</h1>
+      <p>Welcome, {{ user.username }}!</p>
+      <p>Email: {{ user.email }}</p>
+      <p>First name: {{ user.first_name }}</p>
+      <p>Last name: {{ user.last_name }}</p>
+      <a href="{% url 'post_list' %}">Go to Home</a>
+    </div>
+  </body>
+</html>

@@ -1,6 +1,8 @@
 # my_project/blog/urls.py
 
 from django.urls import path
+from django.contrib.auth import views as auth_views
+from .views import custom_logout, post_list
 from . import views
 
 urlpatterns = [
@@ -11,5 +13,10 @@ urlpatterns = [
     path('post/<int:pk>/delete/', views.post_delete, name='post_delete'),
     path('register/', views.register, name='register'),
     path('login/', views.LoginView.as_view(template_name='blog/login.html'), name='login'),
-    path('logout/', views.LogoutView.as_view(), name='logout'),
+    #path('logout/', views.LogoutView.as_view(), name='logout'),
+    path('logout/', custom_logout, name='logout'),
+    path('accounts/profile/', views.profile, name='profile'),
+    path('logout/', custom_logout, name='logout'),
+    path('login/', auth_views.LoginView.as_view(), name='login'),
+    path('', post_list, name='post_list'),
 ]
