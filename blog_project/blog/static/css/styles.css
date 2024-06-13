@@ -43,3 +43,33 @@ nav ul li a:hover {
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
+.post-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.post-item {
+  border: 1px solid #ddd;
+  padding: 10px;
+  flex: 1 1 calc(33.333% - 20px);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.post-item img {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  margin-bottom: 10px;
+}
+.post-title {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.post-content {
+  font-size: 1em;
+  text-align: center;
+}
