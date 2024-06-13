@@ -1,18 +1,27 @@
-{% extends 'blog/base.html' %}
+{% extends "blog/base.html" %}
 
-{% block title %}Post List{% endblock %}
+{% block title %}Blog Posts{% endblock %}
 
 {% block content %}
-    <h1>Blog Posts</h1>
-    <div class="post-list">
-        {% for post in posts %}
-            <div class="post-item">
-                <h2 class="post-title">{{ post.title }}</h2>
-                {% if post.image %}
-                    <img src="{{ post.image.url }}" alt="{{ post.title }}">
-                {% endif %}
-                <p class="post-content">{{ post.content|truncatewords:20 }}</p>
-            </div>
-        {% endfor %}
-    </div>
+<h1>Blog Posts</h1>
+<div class="post-list" style="display: flex; flex-wrap: wrap; gap: 20px;">
+    {% for post in posts %}
+        <div class="post-item" style="border: 1px solid #ddd;
+                                      padding: 10px;
+                                      flex: 1 1 calc(33.333% - 20px);
+                                      box-sizing: border-box;
+                                      display: flex;
+                                      flex-direction: column;
+                                      align-items: center;">
+            <h2 class="post-title">{{ post.title }}</h2>
+            {% if post.image %}
+                <img src="{{ post.image.url }}" alt="{{ post.title }}" style="width: 100%;
+                                                                              max-width: 300px;
+                                                                              height: auto;
+                                                                              margin-bottom: 10px;">
+            {% endif %}
+            <p class="post-content">{{ post.content|truncatewords:20 }}</p>
+        </div>
+    {% endfor %}
+</div>
 {% endblock %}
