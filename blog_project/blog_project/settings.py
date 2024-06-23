@@ -77,16 +77,17 @@ LOGIN_REDIRECT_URL = '/'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
+DATABASES ={
      'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'DjangoBlog',
-        'USER': 'root',
-        'PASSWORD': '',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'TPDJANGOULT',
+        'USER': 'postgres',
+        'PASSWORD': '6721',
         'HOST': '127.0.0.1',  # O la dirección IP de tu servidor MySQL
-        'PORT': '3306',  # Puerto por defecto de MySQL
+        'PORT': '5432',  # Puerto por defecto de MySQL
     }
 }
+
 
 
 # Password validation

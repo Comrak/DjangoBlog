@@ -11,6 +11,16 @@ from django.contrib.auth import logout
 from django.shortcuts import redirect
 
 
+def index(request):
+    # Accedo a la BBDD a traves de los modelos
+
+  
+
+    return render(request, 'blog/index.html')
+
+
+
+
 def post_list(request):
     posts = Post.objects.all()
     return render(request, 'blog/post_list.html', {'posts': posts})
