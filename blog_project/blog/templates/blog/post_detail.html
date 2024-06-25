@@ -15,7 +15,9 @@
     {% endfor %}
 </ul>
 
-<h3>Add a Comment</h3>
+<h3>Add a Comment 
+
+</h3>
 <form method="post">
     {% csrf_token %}
     {{ comment_form.as_p }}

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog',
     'colorfield',
+    
 ]
 
 X_FRAME_OPTIONS = "SAMEORIGIN"

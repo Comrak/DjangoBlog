@@ -20,4 +20,5 @@ urlpatterns = [
     path('logout/', custom_logout, name='logout'),
     #path('login/', auth_views.LoginView.as_view(), name='login'),
     path('', post_list, name='post_list'),
+    path('ultimos-posts/', views.mostrar_ultimos_posts, name='mostrar_ultimos_posts'),
 ]
