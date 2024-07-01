@@ -7,7 +7,7 @@ from .views import custom_logout, post_list
 from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+   # path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('post/<int:pk>/', views.post_detail, name='post_detail'),
     path('post/new/', views.post_create, name='post_create'),

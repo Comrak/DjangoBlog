@@ -1,5 +1,4 @@
-
-# blog/models.py
+# models.py
 
 from django.db import models
 from django.contrib.auth.models import User
@@ -10,17 +9,40 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+class Tag(models.Model):
+    name = models.CharField(max_length=200, unique=True, verbose_name='Nombre')
+    active = models.BooleanField(default=True, verbose_name='Activo')
+
+    class Meta:
+        verbose_name = 'Etiqueta'
+        verbose_name_plural = 'Etiquetas'
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
+
 class Post(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    tag = models.CharField(max_length=50, null=True, blank=True) 
+    etiqueta = models.CharField(max_length=50, null=True, blank=True)  
     created_at = models.DateTimeField(auto_now_add=True)
-    image = models.ImageField(upload_to='images/', null=False, blank=False, default='images/default.jpg')  # Add default value
+    image = models.ImageField(upload_to='images/', null=False, blank=False, default='images/default.jpg')
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name='get_posts', verbose_name='Categoría')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='get_posts', verbose_name='Autor')
+    tags = models.ManyToManyField(Tag, verbose_name='Etiquetas')
+    likes = models.ManyToManyField(User, related_name='blog_posts', verbose_name='Me Gusta')
 
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    class Meta:
+        verbose_name = 'Publicación'
+        verbose_name_plural = 'Publicaciones'
+        ordering = ['-created_at']
 
     def __str__(self):
         return self.title
+
+    def total_likes(self):
+        return self.likes.count()
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
@@ -29,6 +51,5 @@ class Comment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'Comment by {self.author} on {self.post}'
-
+        return f'Comentario de {self.author} en {self.post}'
 

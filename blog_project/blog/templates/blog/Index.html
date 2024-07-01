@@ -149,23 +149,47 @@
 </div>
 
 </section>
+ <!-- Tarjetas de Ultimos Posteos  -->
+
+
 
 <section id="ultimos-posts">
   <h2>Últimos Posts</h2>
-  <ul>
-      {% for post in ultimos_posts %}
+  
+      <div class="container overflow-hidden">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+           {% for post in ultimos_posts %}
+          <div class="col">
+            <div class="card h-100">
+              {% if post.image %}
+                <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}" style="width: 100%;
+                                                                              max-width: 300px;
+                                                                              height: auto;
+                                                                              margin-bottom: 10px;">
+            {% endif %}
+             
+            
+            
+              <div class="card-body">
+                <h5 class="card-title">{{ post.title }}</h5>
+                <p class="card-text">{{ post.content }}</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted"><strong>Creado:</strong> {{ post.created_at }}</small>
+              </div>
+            </div>
+          </div>
+           {% endfor %} 
+           
+        </div>
+      </div>
       
-<div class="item">
-  <h3>{{ post.title }}</h3>
-  <p>{{ post.content }}</p>
-  <p><strong>Creado:</strong> {{ post.created_at }}</p>
-</div>
-      {% endfor %}
-  </ul>
+
+    
+  
 </section>
 
-{% endblock %}
-
+{% endblock %} 
 
 
 
