@@ -10,6 +10,19 @@ from .forms import PostForm, CommentForm
 from django.contrib.auth import logout
 from django.shortcuts import redirect
 
+def mostrar_ultimos_posts(request):
+    # Obtener los últimos posts ordenados por fecha de creación
+    ultimos_posts = Post.objects.order_by('-created_at')[:5]  # Obtener los últimos 10 posts, por ejemplo
+
+    return render(request, 'mostrar_posts.html', {'ultimos_posts': ultimos_posts})
+
+
+
+def index(request):
+   
+ ultimos_posts = Post.objects.order_by('-created_at')[:5]  # Por ejemplo, obtener los últimos 5 posts
+ return render(request, 'blog/index.html', {'ultimos_posts': ultimos_posts})
+
 
 def post_list(request):
     posts = Post.objects.all()

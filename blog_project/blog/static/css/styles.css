@@ -4,7 +4,7 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
+  background-color: #848282;
 }
 
 nav {
@@ -49,6 +49,7 @@ nav ul li a:hover {
   flex-wrap: wrap;
   gap: 20px;
 }
+
 .post-item {
   border: 1px solid #ddd;
   padding: 10px;
@@ -73,3 +74,5 @@ nav ul li a:hover {
   font-size: 1em;
   text-align: center;
 }
+
+
