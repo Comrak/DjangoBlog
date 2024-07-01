@@ -5,8 +5,9 @@ from .models import Category, Tag, Post, Comment
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name',)
-    search_fields = ('name',)
+   readonly_fields = ('created', 'updated')  
+   list_display = ('name', 'active', 'created') 
+   search_fields = ('name',)
 
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
@@ -16,7 +17,7 @@ class TagAdmin(admin.ModelAdmin):
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'created_at', 'category')
+    list_display = ('title', 'author', 'excerpt', 'created_at', 'category')
     search_fields = ('title', 'content')
     list_filter = ('created_at', 'author', 'category')
     ordering = ('-created_at',)

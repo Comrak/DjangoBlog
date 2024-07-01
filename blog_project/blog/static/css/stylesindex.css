@@ -149,7 +149,25 @@ ul li{
   text-align: center;
   color: var(--gray);
 }
+.post_form{
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    border: solid, black, 15px;
+  padding: 5px;
+}
+.text{
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  
 
+}
+#id_excerpt{
+  width: 80%;
+  height: 70px;
+
+}
  /*inicio footer*/
  .footer__content {
   display: grid;

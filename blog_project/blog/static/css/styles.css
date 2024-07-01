@@ -49,6 +49,7 @@ nav ul li a:hover {
   flex-wrap: wrap;
   gap: 20px;
 }
+
 .post-item {
   border: 1px solid #ddd;
   padding: 10px;
