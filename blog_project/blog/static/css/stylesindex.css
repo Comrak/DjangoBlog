@@ -6,7 +6,10 @@ body {
   padding: 0;
   background-color: #747272;
   border-color: #000;
+  
+  
 }
+
 
 nav {
   background-color: #333;
@@ -149,6 +152,10 @@ ul li{
   text-align: center;
   color: var(--gray);
 }
+
+
+
+
 .post_form{
     display: flex;
     justify-content: center; 
@@ -168,6 +175,10 @@ ul li{
   height: 70px;
 
 }
+
+
+
+
  /*inicio footer*/
  .footer__content {
   display: grid;

@@ -3,10 +3,30 @@
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block content %}
-<h1>{{ post.title }}</h1>
+<h1>{{ post.title }}</h1>  
+  <div class="col-auto d-none d-lg-block">
+        <img src= {{ post.image.url }} class="img-fluid" alt="">
+    </div>
+<hr>
+<p class="lead my-3">{{ post.excerpt }}</p>
+    <hr>
+    <p>{{ post.content | safe }}</p>
+
+
 <p>{{ post.content }}</p>
 <p>Author: {{ post.author.username }}</p>
 <p>Published: {{ post.created_at }}</p>
+
+
+<hr>
+
+<strong>Etiquetas:</strong>
+{% for tag in post.tags.all %}
+    <span class="badge text-bg-info">{{ tag.name|upper }}</span>
+{% endfor %}
+
+<br><br>
+
 
 <h2>Comments</h2>
 <ul>
@@ -14,6 +34,8 @@
         <li>{{ comment.content }} - <i>{{ comment.author.username }}</i></li>
     {% endfor %}
 </ul>
+
+
 
 <h3>Add a Comment 
 
@@ -23,4 +45,28 @@
     {{ comment_form.as_p }}
     <button type="submit">Add Comment</button>
 </form>
+<br><br><br>
+
+<form action="{% url 'like_post' post.pk %}" method="post">
+    {% csrf_token %}
+
+    {% if user.is_authenticated %}
+       
+    <!-- 
+    <button type="submit" class="btn btn-sm btn-danger" name="post_id" value="{{ post.id }}">
+        No Me Gusta <span class="badge bg-secondary">{{ total_likes }}</span>
+    </button> -->
+
+    <button type="submit" class="btn btn-sm btn-primary" name="post_id" value="{{ post.id }}">
+        Me Gusta <span class="badge bg-secondary">{{ total_likes }}</span>
+    </button>
+
+           
+        <small> Total de Me Gusta: <strong>{{ total_likes }}</strong> </small>
+    {% endif %}
+</form>
+
+
+
+
 {% endblock %}

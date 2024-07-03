@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'colorfield',
     
+
+    
 ]
 
 X_FRAME_OPTIONS = "SAMEORIGIN"
