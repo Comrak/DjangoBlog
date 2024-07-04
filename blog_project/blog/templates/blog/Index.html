@@ -2,135 +2,104 @@
 
 {% load static %}
 
- {% block content %}
- 
-   <nav>
-    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-                       <div class="card bg-dark text-white">
-                <img  src="{% static 'css/imagenes/89778.jpg'%}" class="card-img w-100" alt="...">
-                <div class="card-img-overlay">
-                  <h3 class="card-title">BONOS CORPORATIVOS HIGH YIELD </h3>
-                  <h4 class="card-text"> Los inversores están evitando cada vez más la deuda corporativa <br>de mayor riesgo 
-                    en Estados Unidos debido a los temores de una posible recesión</h4>
-                  
-                </div>
-              </div>
-          </div>
-          <div class="carousel-item">
-            <div class="card bg-dark text-white">
-                <img  src="{%static 'css/imagenes/finanzas personales.jpg'%}" class="card-img w-100" alt="...">
-                <div class="card-img-overlay">
-                  <h5 class="card-title">PRUEBA IMAGEN 2 </h5>
-                  <p class="card-text"> is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <p class="card-text">Last updated 3 mins ago</p>
-                </div>
-              </div>
-          </div>
-          <div class="carousel-item">
-            <div class="card bg-dark text-white">
-                <img  src="{%static 'css/imagenes/renta-variable.jpg'%}" class="card-img w-100" alt="...">
-                <div class="card-img-overlay">
-                  <h5 class="card-title">PRUEBA IMAGEN 3 </h5>
-                  <p class="card-text"> is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <p class="card-text">Last updated 3 mins ago</p>
-                </div>
-              </div>
+{% block content %}
+
+<nav>
+  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="card bg-dark text-white">
+          <img src="{% static 'css/imagenes/240_F_853680447_24lE5XYTWRbYUAeupenqzoNcrzsp0xN0.jpg'%}" class="card-img w-100" alt="...">
+          <div class="card-img-overlay">
+            <h3 class="card-title">BONOS CORPORATIVOS HIGH YIELD </h3>
+            <h4 class="card-text"> Los inversores están evitando cada vez más la deuda corporativa <br>de mayor riesgo
+              en Estados Unidos debido a los temores de una posible recesión</h4>
+
           </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
       </div>
+      <div class="carousel-item">
+        <div class="card bg-dark text-white">
+          <img src="{%static 'css/imagenes/240_F_13561647_K2ucHVB4L0z5MB1AHV0pS4B5qsIH2WTC.jpg'%}" class="card-img w-85" alt="...">
+          <div class="card-img-overlay">
+            <h3 class="card-title">LAVADO DE DINERO </h3>
+            <h4 class="card-text"> Por lavado. Detencciones en un Country y mas de 10 pedidos de captura internacional .</h4>
+           
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="card bg-dark text-white">
+          <img src="{%static 'css/imagenes/240_F_599046452_0aX10n9DMKnMDQPeIuDxdt0OmbrQzLQE.jpg'%}" class="card-img w-100" alt="...">
+          <div class="card-img-overlay">
+            <h3 class="card-title">APRENDA SOBRE LOS MERCADOS FINANCIEROS </h3>
+            <h4 class="card-text"> Ingrese en Nuestro Cursos y elija en una variedad de áreas temáticas, que incluyen liderazgo y gestión, gestión de proyectos, recursos humanos, marketing digital, comunicación, finanzas, desarrollo profesional y ventas.</h4>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
 </nav>
 </header>
 
 <main>
-<!--
-<section class="Noticias">
+
+
+  <section id="ultimos-posts">
+    <hr>
+    <hr>
+    <h2>ÚLTIMOS POSTEOS</h2>
+    <hr>
+    <hr>
     <div class="container overflow-hidden">
-        <div class="row gy-5">
-          <div class="col-6">
-            <img src="{% static 'css/imagenes/ECONOMIA-MUNDIAL.jpg'%}" class="d-block w-100" alt="Foto Mercado a la Baja "">
-            <div class="p-3 border bg-light"> <h5> Mercados Emergentes Con Nuevos Vientos Alcistas  </h5> 
-                  <p>Según el pronóstico de base, la economía mundial continuará creciendo un 3,2% en 2024 y 2025, al mismo ritmo que en 2023.
-            </p> </div>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for post in ultimos_posts %}
+        <div class="col">
+          <div class="card h-100">
+            {% if post.image %}
+            <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}" style="width: 100%;
+                                                                                
+                                                                                height: 50%;
+                                                                                margin-bottom: 10px;">
+            {% endif %}
+
+
+
+            <div class="card-body">
+              <h5 class="card-title">{{ post.title|upper  }}</h5>
+              <br>
+              <br>
+              <p class="card-text">{{ post.excerpt|upper }}</p>
+              <a href="{% url 'post_detail' post.pk %}" target="_blank">Seguir Leyendo</a>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted"><strong>Creado:</strong> {{ post.created_at }}</small>
+              <small> Total de Me Gusta: <strong>{{ post.total_likes }}</strong> </small>
+            </div>
           </div>
-
-
-          <div class="col-6">
-            <img src="{% static 'css/imagenes/mercados internacionales.jpg'%}" class="d-block w-100" alt="...">
-            <div class="p-3 border bg-light"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe esse, voluptatibus ipsum sit necessitatibus velit.
-                Custom column padding</div>
-          </div>
-
-
-          <div class="col-6">
-            <img src="{% static 'css/imagenes/renta-variable.jpg'%}" class="d-block w-100" alt="...">
-            <div class="p-3 border bg-light"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe esse, voluptatibus ipsum sit necessitatibus velit.
-                Custom column padding</div>
-          </div>
-
-
-          <div class="col-6">
-            <img src="{% static 'css/imagenes/cdn-3.expansion.jpg'%}" class="d-block w-100" alt="...">
-            <div class="p-3 border bg-light"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed ab iste libero! Repellat fugit dolores voluptates. Sed quas, ipsam beatae odio incidunt aut explicabo nam, facilis assumenda necessitatibus eaque omnis?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe esse, voluptatibus ipsum sit necessitatibus velit.
-                Custom column padding</div> 
-          </div>
-
-          
         </div>
+        {% endfor %}
+
       </div>
-</section>-->
+    </div>
 
-        <section class="Finanzas">
-            <div class="container overflow-hidden">
-                <div class="row gy-5">
-                  <div class="col-6">
-                    <img src="{% static 'css/imagenes/1366_2001.jpg'%}" class="d-block w-100" alt="...">
-                    <div class="p-3 border bg-light">  <h5>Milei reduce la inflación en sus primeros meses de mandato. Es un éxito a medias para Argentina, si no logra que haya crecimiento no servirá de nada</h5>
-                        <p>Desde la llegada de Javier Milei a la presidencia, Argentina parece haber encontrado la solución para frenar su elevada
-                             inflación: recortar el gasto público y acabar con la emisión monetaria del Banco Central para financiar el déficit
-                              <a href="">...LEER MÁS »</a></p>
-                    </div>
-                  </div>
-                  <div class="col-6">
-                    <img src="{% static 'css/imagenes/500_333.jpg'%}" class="d-block w-100" alt="...">
-                    <div class="p-3 border bg-light"><h5>Elon Musk tras conseguir que los accionistas de Tesla le regalen 
-                        50.000 millones</h5>
-                    <p> El ingenio y la arrogancia de Elon Musk parecen no tener límite. Después de conseguir que la junta de accionistas de Tesla aprobase el pasado 13 de junio el pago de una compensación económica de
-                         casi 50.000 millones de dólares <a href="">... LEER MÁS »</a></p></div>
-                  </div>
-                  <div class="col-6">
-                    <img src="{% static 'css/imagenes/1366_2000.png'%}" class="d-block w-100" alt="...">
-                    <div class="p-3 border bg-light">
-                            <h5>Elegir carrera: los datos dicen que mejor algunos ciclos de FP que ir a la universidad a hacer Humanidades</h5>
-                            <p>En un momento en el que las generaciones Y (millennials) y Z (zoomers) está cambiando sus perspectivas vitales y resignándose
-                                 a heredar para tener casa propia, las opciones más funcionales siguen tomando más y más fuerza. En este caso, <a href="">... LEER MÁS »</a></p>
-                    </div>
-                  </div>
-                  <div class="col-6">
-                    <img src="{% static 'css/imagenes/1366_2000.jpg'%}" class="d-block w-100" alt="...">
-                    <div class="p-3 border bg-light">
-                    <h5>Por qué hay muchos inversores indexados que dicen que es mejor seguir el S&P 500 que indexarse al mundo entero</h5>    
-                    <p>La inversión indexada debería ser la preferencia de la mayor parte de población. Batir al mercado es muy complicado, y casi imposible de forma consistente. 
-                        Por tanto elegir un fondo de inversión indexado o a través de ETF es la forma más <a href="">... LEER MÁS »</a></p>    
-                    </div>
-                  </div>
-                </div>
-              </div>
 
-</section>
 
-<section>
-<div  class="Central" style="
-  background-image: url(../../static/css/imagenes/ECONOMIA-MUNDIAL.jpg);
+
+  </section>
+
+  <section>
+    <div class="Central" style="
+  background-image: url(../../static/css/imagenes/1000_F_503256804_t65u8rGmzVZJckU22t3ZxT3tdmxmCYs6.jpg);
   height: 80vh;
   width: 90%;
   margin-bottom: 5%;
@@ -138,58 +107,75 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  background-position: center center;
+  background-position: center top;
   display: flex;
   border: solid black, 15px;
 ">
-<h4>TODAS LAS NOTICIAS </h4><br>
-<br>
-<H3>LA INFORMACION MAS ACTUALIZADA </H3>
-  
-</div>
+    
+      <h3>LA INFORMACION MAS ACTUALIZADA </h3>
 
-</section>
- <!-- Tarjetas de Ultimos Posteos  -->
+    </div>
 
+  </section>
 
-
-<section id="ultimos-posts">
-  <h2>Últimos Posts</h2>
-  
-      <div class="container overflow-hidden">
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-           {% for post in ultimos_posts %}
-          <div class="col">
-            <div class="card h-100">
-              {% if post.image %}
-                <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}" style="width: 100%;
-                                                                              max-width: 300px;
-                                                                              height: auto;
-                                                                              margin-bottom: 10px;">
-            {% endif %}
-             
-            
-            
-              <div class="card-body">
-                <h5 class="card-title">{{ post.title }}</h5>
-                <p class="card-text">{{ post.excerpt }}</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted"><strong>Creado:</strong> {{ post.created_at }}</small>
-              </div>
-            </div>
+  <section class="Finanzas">
+    <hr>
+    <hr>
+    <h3>NOTICIAS ECONOMICAS</h3>
+    <hr>
+    <hr>
+    <div class="container overflow-hidden">
+      <div class="row gy-5">
+        <div class="col-6">
+          <img src="{% static 'css/imagenes/1366_2001.jpg'%}" class="d-block w-100" alt="...">
+          <div class="p-3 border bg-light">
+            <h5>Milei reduce la inflación en sus primeros meses de mandato. Es un éxito a medias para Argentina, si no
+              logra que haya crecimiento no servirá de nada</h5>
+            <p>Desde la llegada de Javier Milei a la presidencia, Argentina parece haber encontrado la solución para
+              frenar su elevada
+              inflación: recortar el gasto público y acabar con la emisión monetaria del Banco Central para financiar el
+              déficit
+              
+            </p>
           </div>
-           {% endfor %} 
-           
+        </div>
+        <div class="col-6">
+          <img src="{% static 'css/imagenes/500_333.jpg'%}" class="d-block w-100" alt="...">
+          <div class="p-3 border bg-light">
+            <h5>Elon Musk tras conseguir que los accionistas de Tesla le regalen
+              50.000 millones</h5>
+            <p> El ingenio y la arrogancia de Elon Musk parecen no tener límite. Después de conseguir que la junta de
+              accionistas de Tesla aprobase el pasado 13 de junio el pago de una compensación económica de
+              casi 50.000 millones de dólares </p>
+          </div>
+        </div>
+        <div class="col-6">
+          <img src="{% static 'css/imagenes/1366_2000.png'%}" class="d-block w-100" alt="...">
+          <div class="p-3 border bg-light">
+            <h5>Elegir carrera: los datos dicen que mejor algunos ciclos de FP que ir a la universidad a hacer
+              Humanidades</h5>
+            <p>En un momento en el que las generaciones Y (millennials) y Z (zoomers) está cambiando sus perspectivas
+              vitales y resignándose
+              a heredar para tener casa propia, las opciones más funcionales siguen tomando más y más fuerza. En este
+              caso, </p>
+          </div>
+        </div>
+        <div class="col-6">
+          <img src="{% static 'css/imagenes/1366_2000.jpg'%}" class="d-block w-100" alt="...">
+          <div class="p-3 border bg-light">
+            <h5>Por qué hay muchos inversores indexados que dicen que es mejor seguir el S&P 500 que indexarse al mundo
+              entero</h5>
+            <p>La inversión indexada debería ser la preferencia de la mayor parte de población. Batir al mercado es muy
+              complicado, y casi imposible de forma consistente.
+              Por tanto elegir un fondo de inversión indexado o a través de ETF es la forma más </p>
+          </div>
         </div>
       </div>
-      
+    </div>
 
-    
-  
-</section>
+  </section>
 
-{% endblock %} 
+  {% endblock %}
 
 
 
@@ -204,5 +190,3 @@
 
 
 </html>
-
-

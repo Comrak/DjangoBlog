@@ -8,39 +8,58 @@ from django.contrib.auth.views import LoginView, LogoutView
 from .models import Post, Comment
 from .forms import PostForm, CommentForm
 from django.contrib.auth import logout
-from django.shortcuts import redirect
+from django.urls import reverse    
+from django.http import HttpResponseRedirect
+
+
+
+
+
 
 def mostrar_ultimos_posts(request):
-    # Obtener los últimos posts ordenados por fecha de creación
-    ultimos_posts = Post.objects.order_by('-created_at')[:5]  # Obtener los últimos 10 posts, por ejemplo
-
+   
+    ultimos_posts = Post.objects.order_by('-created_at')[:10]  
+    for post in ultimos_posts:
+        post.total_likes = post.total_likes()
+        post.liked = post.likes.filter(id=request.user.id).exists()
     return render(request, 'mostrar_posts.html', {'ultimos_posts': ultimos_posts})
 
 
 
 def index(request):
    
- ultimos_posts = Post.objects.order_by('-created_at')[:5]  # Por ejemplo, obtener los últimos 5 posts
+ ultimos_posts = Post.objects.order_by('-created_at')[:10] 
+ for post in ultimos_posts:
+        post.total_likes = post.total_likes()
+        post.liked = post.likes.filter(id=request.user.id).exists()
  return render(request, 'blog/index.html', {'ultimos_posts': ultimos_posts})
 
 
 def post_list(request):
     posts = Post.objects.all()
+    latest_post = Post.objects.filter(author=request.user).order_by('-created_at').first()
     return render(request, 'blog/post_list.html', {'posts': posts})
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
+    total_likes = post.total_likes()
+    liked = False
+    if post.likes.filter(id=request.user.id).exists():
+        liked = True
+  
     if request.method == 'POST':
         comment_form = CommentForm(request.POST)
+        
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
             comment.post = post
             comment.author = request.user
             comment.save()
+            total_likes = post.total_likes()
             return redirect('post_detail', pk=post.pk)
     else:
         comment_form = CommentForm()
-    return render(request, 'blog/post_detail.html', {'post': post, 'comment_form': comment_form})
+        return render(request, 'blog/post_detail.html', {'post': post, 'comment_form': comment_form, 'total_likes': total_likes,'liked': liked })
 
 @login_required
 def post_create(request):
@@ -54,6 +73,15 @@ def post_create(request):
     else:
         form = PostForm()
     return render(request, 'blog/post_form.html', {'form': form})
+
+@login_required
+def latest_post(request):
+    latest_post = Post.objects.filter(author=request.user).order_by('-created_at').first()
+    return render(request, 'blog/latest_post.html', {'latest_post': latest_post})
+
+
+
+
 
 @login_required
 def post_edit(request, pk):
@@ -91,3 +119,15 @@ def custom_logout(request):
 
 def profile(request):
     return render(request, 'profile.html')
+
+
+
+def LikeView(request, pk):
+    post = get_object_or_404(Post, id=request.POST.get('post_id'))
+
+    if post.likes.filter(id=request.user.id).exists():
+        post.likes.remove(request.user)
+    else:
+        post.likes.add(request.user)
+
+    return HttpResponseRedirect(reverse('post_detail', args=[str(pk)]))
