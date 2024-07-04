@@ -17,9 +17,11 @@ from django.http import HttpResponseRedirect
 
 
 def mostrar_ultimos_posts(request):
-    # Obtener los últimos posts ordenados por fecha de creación
-    ultimos_posts = Post.objects.order_by('-created_at')[:5]  
-
+   
+    ultimos_posts = Post.objects.order_by('-created_at')[:10]  
+    for post in ultimos_posts:
+        post.total_likes = post.total_likes()
+        post.liked = post.likes.filter(id=request.user.id).exists()
     return render(request, 'mostrar_posts.html', {'ultimos_posts': ultimos_posts})
 
 
@@ -27,6 +29,9 @@ def mostrar_ultimos_posts(request):
 def index(request):
    
  ultimos_posts = Post.objects.order_by('-created_at')[:10] 
+ for post in ultimos_posts:
+        post.total_likes = post.total_likes()
+        post.liked = post.likes.filter(id=request.user.id).exists()
  return render(request, 'blog/index.html', {'ultimos_posts': ultimos_posts})
 
 
@@ -54,12 +59,7 @@ def post_detail(request, pk):
             return redirect('post_detail', pk=post.pk)
     else:
         comment_form = CommentForm()
-    return render(request, 'blog/post_detail.html', {
-        'post': post,
-        'comment_form': comment_form,
-        'total_likes': total_likes,
-        'liked': liked
-    })
+        return render(request, 'blog/post_detail.html', {'post': post, 'comment_form': comment_form, 'total_likes': total_likes,'liked': liked })
 
 @login_required
 def post_create(request):

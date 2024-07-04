@@ -9,7 +9,7 @@
     <div class="carousel-inner">
       <div class="carousel-item active">
         <div class="card bg-dark text-white">
-          <img src="{% static 'css/imagenes/89778.jpg'%}" class="card-img w-100" alt="...">
+          <img src="{% static 'css/imagenes/240_F_853680447_24lE5XYTWRbYUAeupenqzoNcrzsp0xN0.jpg'%}" class="card-img w-100" alt="...">
           <div class="card-img-overlay">
             <h3 class="card-title">BONOS CORPORATIVOS HIGH YIELD </h3>
             <h4 class="card-text"> Los inversores están evitando cada vez más la deuda corporativa <br>de mayor riesgo
@@ -20,23 +20,21 @@
       </div>
       <div class="carousel-item">
         <div class="card bg-dark text-white">
-          <img src="{%static 'css/imagenes/finanzas personales.jpg'%}" class="card-img w-100" alt="...">
+          <img src="{%static 'css/imagenes/240_F_13561647_K2ucHVB4L0z5MB1AHV0pS4B5qsIH2WTC.jpg'%}" class="card-img w-85" alt="...">
           <div class="card-img-overlay">
-            <h5 class="card-title">PRUEBA IMAGEN 2 </h5>
-            <p class="card-text"> is a wider card with supporting text below as a natural lead-in to additional content.
-              This content is a little bit longer.</p>
-            <p class="card-text">Last updated 3 mins ago</p>
+            <h3 class="card-title">LAVADO DE DINERO </h3>
+            <h4 class="card-text"> Por lavado. Detencciones en un Country y mas de 10 pedidos de captura internacional .</h4>
+           
           </div>
         </div>
       </div>
       <div class="carousel-item">
         <div class="card bg-dark text-white">
-          <img src="{%static 'css/imagenes/renta-variable.jpg'%}" class="card-img w-100" alt="...">
+          <img src="{%static 'css/imagenes/240_F_599046452_0aX10n9DMKnMDQPeIuDxdt0OmbrQzLQE.jpg'%}" class="card-img w-100" alt="...">
           <div class="card-img-overlay">
-            <h5 class="card-title">PRUEBA IMAGEN 3 </h5>
-            <p class="card-text"> is a wider card with supporting text below as a natural lead-in to additional content.
-              This content is a little bit longer.</p>
-            <p class="card-text">Last updated 3 mins ago</p>
+            <h3 class="card-title">APRENDA SOBRE LOS MERCADOS FINANCIEROS </h3>
+            <h4 class="card-text"> Ingrese en Nuestro Cursos y elija en una variedad de áreas temáticas, que incluyen liderazgo y gestión, gestión de proyectos, recursos humanos, marketing digital, comunicación, finanzas, desarrollo profesional y ventas.</h4>
+           
           </div>
         </div>
       </div>
@@ -69,20 +67,23 @@
           <div class="card h-100">
             {% if post.image %}
             <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}" style="width: 100%;
-                                                                                max-width: 300px;
-                                                                                height: auto;
+                                                                                
+                                                                                height: 50%;
                                                                                 margin-bottom: 10px;">
             {% endif %}
 
 
 
             <div class="card-body">
-              <h5 class="card-title">{{ post.title }}</h5>
-              <p class="card-text">{{ post.excerpt }}</p>
+              <h5 class="card-title">{{ post.title|upper  }}</h5>
+              <br>
+              <br>
+              <p class="card-text">{{ post.excerpt|upper }}</p>
               <a href="{% url 'post_detail' post.pk %}" target="_blank">Seguir Leyendo</a>
             </div>
             <div class="card-footer">
               <small class="text-muted"><strong>Creado:</strong> {{ post.created_at }}</small>
+              <small> Total de Me Gusta: <strong>{{ post.total_likes }}</strong> </small>
             </div>
           </div>
         </div>
@@ -96,12 +97,9 @@
 
   </section>
 
-
-
-
   <section>
     <div class="Central" style="
-  background-image: url(../../static/css/imagenes/ECONOMIA-MUNDIAL.jpg);
+  background-image: url(../../static/css/imagenes/1000_F_503256804_t65u8rGmzVZJckU22t3ZxT3tdmxmCYs6.jpg);
   height: 80vh;
   width: 90%;
   margin-bottom: 5%;
@@ -109,13 +107,12 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  background-position: center center;
+  background-position: center top;
   display: flex;
   border: solid black, 15px;
 ">
-      <h4>TODAS LAS NOTICIAS </h4><br>
-      <br>
-      <H3>LA INFORMACION MAS ACTUALIZADA </H3>
+    
+      <h3>LA INFORMACION MAS ACTUALIZADA </h3>
 
     </div>
 
@@ -138,7 +135,7 @@
               frenar su elevada
               inflación: recortar el gasto público y acabar con la emisión monetaria del Banco Central para financiar el
               déficit
-              <a href="">...LEER MÁS »</a>
+              
             </p>
           </div>
         </div>
@@ -149,7 +146,7 @@
               50.000 millones</h5>
             <p> El ingenio y la arrogancia de Elon Musk parecen no tener límite. Después de conseguir que la junta de
               accionistas de Tesla aprobase el pasado 13 de junio el pago de una compensación económica de
-              casi 50.000 millones de dólares <a href="">... LEER MÁS »</a></p>
+              casi 50.000 millones de dólares </p>
           </div>
         </div>
         <div class="col-6">
@@ -160,7 +157,7 @@
             <p>En un momento en el que las generaciones Y (millennials) y Z (zoomers) está cambiando sus perspectivas
               vitales y resignándose
               a heredar para tener casa propia, las opciones más funcionales siguen tomando más y más fuerza. En este
-              caso, <a href="">... LEER MÁS »</a></p>
+              caso, </p>
           </div>
         </div>
         <div class="col-6">
@@ -170,8 +167,7 @@
               entero</h5>
             <p>La inversión indexada debería ser la preferencia de la mayor parte de población. Batir al mercado es muy
               complicado, y casi imposible de forma consistente.
-              Por tanto elegir un fondo de inversión indexado o a través de ETF es la forma más <a href="">... LEER MÁS
-                »</a></p>
+              Por tanto elegir un fondo de inversión indexado o a través de ETF es la forma más </p>
           </div>
         </div>
       </div>

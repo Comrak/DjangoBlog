@@ -3,10 +3,12 @@
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block content %}
-<h1>{{ post.title }}</h1>  
+
+<div class="container">
+<h1>{{ post.title|upper  }}</h1>  
   <div class="col-auto d-none d-lg-block">
         <img src= {{ post.image.url }} class="img-fluid" alt="">
-    </div>
+   </div>
 <hr>
 <p class="lead my-3">{{ post.excerpt }}</p>
     <hr>
@@ -43,30 +45,28 @@
 <form method="post">
     {% csrf_token %}
     {{ comment_form.as_p }}
+
+
+
     <button type="submit">Add Comment</button>
 </form>
+
+
+
 <br><br><br>
 
 <form action="{% url 'like_post' post.pk %}" method="post">
     {% csrf_token %}
-
     {% if user.is_authenticated %}
        
-    <!-- 
-    <button type="submit" class="btn btn-sm btn-danger" name="post_id" value="{{ post.id }}">
-        No Me Gusta <span class="badge bg-secondary">{{ total_likes }}</span>
-    </button> -->
-
     <button type="submit" class="btn btn-sm btn-primary" name="post_id" value="{{ post.id }}">
         Me Gusta <span class="badge bg-secondary">{{ total_likes }}</span>
     </button>
-
-           
-        <small> Total de Me Gusta: <strong>{{ total_likes }}</strong> </small>
+       
+      <br> <small> Total de Me Gusta: <strong>{{ total_likes }}</strong> </small>
     {% endif %}
 </form>
 
 
-
-
+</div>
 {% endblock %}
