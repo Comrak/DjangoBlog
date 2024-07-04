@@ -26,13 +26,13 @@
         <ul>
             {% if user.is_authenticated %}
                 <li><a href="{% url 'post_list' %}">Home</a></li>
-                <li><a href="{% url 'post_create' %}">New Post</a></li>
+                <li><a href="{% url 'post_create' %}">Nuevo Post</a></li>
                 <li><a href="{% url 'logout' %}">Logout</a></li>
                 
             {% else %}
                 <li><a href="{% url 'post_list' %}">Home</a></li>
-                <li><a href="{% url 'login' %}">Login</a></li>
-                <li><a href="{% url 'register' %}">Register</a></li>
+                <li><a href="{% url 'login' %}">Loguear</a></li>
+                <li><a href="{% url 'register' %}">Registrarse</a></li>
             {% endif %}
         </ul>
     </nav>

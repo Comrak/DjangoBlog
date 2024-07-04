@@ -7,7 +7,7 @@
 <div class="container">
 <h1>{{ post.title|upper  }}</h1>  
   <div class="col-auto d-none d-lg-block">
-        <img src= {{ post.image.url }} class="img-fluid" alt="">
+        <img src= {{ post.image.url }} class="img-fluid" alt="" height="200px" width="200px" style="align-items: center;">
    </div>
 <hr>
 <p class="lead my-3">{{ post.excerpt }}</p>
@@ -16,8 +16,8 @@
 
 
 <p>{{ post.content }}</p>
-<p>Author: {{ post.author.username }}</p>
-<p>Published: {{ post.created_at }}</p>
+<p>Auor: {{ post.author.username }}</p>
+<p>Publicado en: {{ post.created_at }}</p>
 
 
 <hr>
@@ -29,8 +29,8 @@
 
 <br><br>
 
-
-<h2>Comments</h2>
+{% if user.is_authenticated %}
+<h2>Comentario</h2>
 <ul>
     {% for comment in post.comments.all %}
         <li>{{ comment.content }} - <i>{{ comment.author.username }}</i></li>
@@ -39,7 +39,7 @@
 
 
 
-<h3>Add a Comment 
+<h3>Añadir comentario
 
 </h3>
 <form method="post">
@@ -48,7 +48,7 @@
 
 
 
-    <button type="submit">Add Comment</button>
+    <button type="submit">Comentar</button>
 </form>
 
 
@@ -57,7 +57,7 @@
 
 <form action="{% url 'like_post' post.pk %}" method="post">
     {% csrf_token %}
-    {% if user.is_authenticated %}
+    
        
     <button type="submit" class="btn btn-sm btn-primary" name="post_id" value="{{ post.id }}">
         Me Gusta <span class="badge bg-secondary">{{ total_likes }}</span>
